@@ -5,6 +5,7 @@
     <update id="insert">
         INSERT INTO iw_file (
             original_file_name,
+            file_name,
             mime_type,
             size,
             file_type,
@@ -16,6 +17,7 @@
             created_by
         ) VALUES (
             #{originalFileName},
+            #{fileName},
             #{mimeType},
             #{size},
             #{fileType},
@@ -30,10 +32,10 @@
 
     <select id="getFileById">
         SELECT *
-        FROM if_file
+        FROM iw_file
         WHERE is_deleted = 'N'
             AND use_yn = 'Y'
-            AND seq = #{seq}
+            AND seq = #{fileId}
     </select>
 
 </mapper>

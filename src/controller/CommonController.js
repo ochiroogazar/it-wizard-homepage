@@ -1,4 +1,5 @@
 const path = require('path');
+const fs = require('fs');
 const { getLogger } = require('../lib/logger');
 const Logger = getLogger({ title: 'common controller' });
 
@@ -46,24 +47,25 @@ const download = async (req, res) => {
     let requestData = new RequestData(req);
     let responseData = new ResponseData(requestData);
 
-    const fileName = req.params.fileId;
     const directoryPath = baseDir;
 
-    const fileId = null;
-    fileId = req.params.fileId;
+    const fileId = req.params.fileId;
     
     await requestData.start(true);
         
     const file = await FileModel.loadFile(requestData, fileId);
    try {
-        await res.download(directoryPath + fileName + '.' + file.fileExt , fileName, (err) => {
-            if (err) {
-                responseData.setResponseCode(RESPONSE_CODE.CONTACT_ADMIN);
-                res.send(responseData);
-            } else {
-                responseData.setResponseCode(RESPONSE_CODE.OK);
-            }
-        });
+        const rs = fs.createReadStream(directoryPath + file[0].file_name);
+        res.setHeader("Content-Disposition", "attachment; " + file[0].original_file_name );
+        rs.pipe(res);
+        // await res.download(directoryPath + file[0].file_name , file[0].file_name , (err) => {
+        //     if (err) {
+        //         responseData.setResponseCode(RESPONSE_CODE.CONTACT_ADMIN);
+        //         res.send(responseData);
+        //     } else {
+        //         responseData.setResponseCode(RESPONSE_CODE.OK);
+        //     }
+        // });
      } catch (e) {
         Logger.debug(e);
         await requestData.error();

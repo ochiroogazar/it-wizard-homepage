@@ -27,7 +27,7 @@ const loadFile = async (requestData, id = null) => {
         const queryString = Query(NAMESPACE.FILE, 'getFileById', params);
         console.log(queryString);
 
-        const file = await connection.query(queryString);
+        const [file] = await connection.query(queryString);
         
         return file;
     } catch (e) {

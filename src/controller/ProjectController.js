@@ -67,6 +67,7 @@ const insertProject = async (req, res) => {
                 responseData.setResponseCode(RESPONSE_CODE.FILE_ERROR);
             } 
             requestData.setBodyValue('fileSeq', fileResult[0].insertId);
+            requestData.setBodyValue('fileName', requestData.getBodyValue('file').filename);
         }
 
         const result = await ProjectModel.insertProject(requestData);

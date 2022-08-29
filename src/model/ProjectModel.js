@@ -38,6 +38,7 @@ const insertProject = async (requestData) => {
     const params = {
         teamSeq :  requestData.getBodyValue('teamSeq') != null ? requestData.getBodyValue('teamSeq') : '',
         fileSeq :  requestData.getBodyValue('fileSeq') != null ? requestData.getBodyValue('fileSeq') : '',
+        fileName :  requestData.getBodyValue('fileName') != null ? requestData.getBodyValue('fileName') : '',
         projectName :  requestData.getBodyValue('projectName') != null ? requestData.getBodyValue('projectName') : '',
         projectType :  requestData.getBodyValue('projectType') != null ? requestData.getBodyValue('projectType') : '',
         relatedUrl :  requestData.getBodyValue('relatedUrl') != null ? requestData.getBodyValue('relatedUrl') : '',
