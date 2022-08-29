@@ -14,7 +14,7 @@ const PreInterceptor = async (req, res, next) => {
         return next();
     }
 
-    if(req.originalUrl.startsWith('/v1') || req.originalUrl.startsWith('/v2')) {
+    if(req.originalUrl.startsWith('/v1') || req.originalUrl.startsWith('/v2') || req.originalUrl.startsWith('/a1')) {
         return next();
     }
 

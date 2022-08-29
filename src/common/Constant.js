@@ -49,6 +49,7 @@ const NAMESPACE = {
   PROJECT             :   'projectMapper'       ,
   FILE                :   'fileMapper'          ,
   SITE                :   'siteMapper'          ,
+  BLOG                :   'blogMapper'          ,
 };
 
 const PAGING_DEFAULT = {

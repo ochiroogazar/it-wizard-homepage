@@ -7,6 +7,7 @@ mybatisMapper.createMapper([
     path.resolve(__dirname, "mapper/fileMapper.xml"),
     path.resolve(__dirname, "mapper/userMapper.xml"),
     path.resolve(__dirname, "mapper/siteMapper.xml"),
+    path.resolve(__dirname, "mapper/blogMapper.xml"),
 ]);
 
 const Query = (nameSpace, sqlID, params) =>{
