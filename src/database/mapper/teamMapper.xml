@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="teamMapper">
+
+    <select id="selectTeams">
+        SELECT *
+        FROM iw_teams
+        WHERE is_deleted = 'N'
+            AND use_yn = 'Y'
+            <if test="teamSeq != null and teamSeq != ''">
+            AND seq = #{teamSeq}
+            </if>
+    </select>
+
+    <insert id="insert">
+        INSERT INTO iw_teams
+        ( team_name
+        , is_deleted
+        , use_yn
+        , created_date
+        , created_by
+        )
+        VALUES
+        ( #{teamName}
+        ,'N'
+        , 'Y'
+        , now()
+        , ''
+        )
+    </insert>
+
+    <update id="update">
+        UPDATE iw_teams 
+        SET updated_date = now()
+            , updated_by = '',
+            <if test="teamName != null and teamName != ''">
+            , team_name = #{teamName}
+            </if>
+        WHERE seq = #{seq}
+    </update>
+
+    <update id="delete">
+        UPDATE iw_teams 
+            SET is_deleted = 'Y'
+        WHERE seq = #{seq}
+    </update>
+
+</mapper>
